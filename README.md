@@ -79,3 +79,5 @@ python src/predict.py
 
 Run the prediction tests:
 python src/test_prediction.py
+
+Git practice: learning version control step by step.
