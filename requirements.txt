@@ -3,3 +3,6 @@ scikit-learn
 joblib
 matplotlib
 pytest
+fastapi
+uvicorn[standard]
+httpx2
