@@ -82,3 +82,52 @@ python src/test_prediction.py
 
 Git practice: learning version control step by step.
 Learning Git branches: feature-test.
+
+# Iris Classification API
+
+This project provides a REST API built with FastAPI to predict
+the species of an Iris flower using a trained machine learning model.
+
+## Run the API
+
+```bash
+python -m pip install -r requirements.txt
+```
+
+Start the server from the project root:
+```bash
+python -m uvicorn src.main:app --reload
+```
+Open the interactive API documentation:
+http://127.0.0.1:8000/docs
+
+## Prediction Endpoint
+
+**POST** `/predict`
+
+Example request:
+
+```json
+{
+  "sepal_length": 5.1,
+  "sepal_width": 3.5,
+  "petal_length": 1.4,
+  "petal_width": 0.2
+}
+```
+
+Example response:
+
+```json
+{
+  "predicted_class": "setosa",
+  "class_id": 0
+}
+```
+All measurements must be greater than 0 and less than or equal to 10
+
+## Run Tests
+
+```bash
+python -m pytest -v
+```

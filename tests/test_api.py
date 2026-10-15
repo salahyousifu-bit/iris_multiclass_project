@@ -30,3 +30,40 @@ def test_predict_invalid_input():
             "petal_width": 0.2,
     },)
     assert response.status_code == 422 
+    
+def test_predict_rejects_negative_measurement():
+    response = client.post("/predict", json={
+            "sepal_length": -5,
+            "sepal_width": 3.5,
+            "petal_length": 1.4,
+            "petal_width": 0.2,
+    })
+    
+    assert response.status_code == 422
+    
+def test_predict_rejects_measurement_above_maximum():
+    response = client.post("/predict", json={
+            "sepal_length": 12,
+            "sepal_width": 3.5,
+            "petal_length": 1.4,
+            "petal_width": 0.2,
+    })
+    assert response.status_code == 422
+    
+
+def test_predict_error_contains_validation_details():
+    response = client.post(
+        "/predict",
+        json={
+            "sepal_length": -5,
+            "sepal_width": 3.5,
+            "petal_length": 1.4,
+            "petal_width": 0.2,
+        },
+    )
+
+    assert response.status_code == 422
+
+    error = response.json()
+    assert "detail" in error
+    assert len(error["detail"]) > 0
