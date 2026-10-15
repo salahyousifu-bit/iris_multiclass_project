@@ -27,13 +27,13 @@ accuracy = accuracy_score(y_test , y_pred)
 print("accuracy :" , accuracy)
 
 print("\nconfusion matrix :")
-print(confusion_matrix(y_pred , y_test))
+print(confusion_matrix(y_test , y_pred))
 
 print("target names")
 print(iris.target_names)
 
 print("\nclassification report")
-print(classification_report(y_pred , y_test , target_names=iris.target_names))
+print(classification_report(y_test , y_pred , target_names=iris.target_names))
 
 project_root = Path(__file__).resolve().parent.parent
 model_path = project_root / "models" / "iris_model.joblib"
